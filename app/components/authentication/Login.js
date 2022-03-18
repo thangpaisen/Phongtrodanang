@@ -128,10 +128,15 @@ const Login = ({ navigation }) => {
                 >
                     <Text style={styles.textButton}>Đăng nhập</Text>
                 </TouchableOpacity>
-                <View style={styles.signup}>
-                    <Text style={{ fontSize: 14 }}>Bạn chưa có tài khoản?</Text>
-                    <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
-                        <Text style={styles.signupNow}>Đăng ký ngay</Text>
+                <View>
+                    <View style={styles.signup}>
+                        <Text style={{ fontSize: 14 }}>Bạn chưa có tài khoản?</Text>
+                        <TouchableOpacity onPress={() => navigation.navigate('SignUp')}>
+                            <Text style={styles.signupNow}>Đăng ký ngay</Text>
+                        </TouchableOpacity>
+                    </View>
+                    <TouchableOpacity style={styles.forgotPassword}>
+                        <Text style={styles.textForgotPassword}>Quên mật khẩu</Text>
                     </TouchableOpacity>
                 </View>
             </View>
@@ -150,6 +155,7 @@ const styles = StyleSheet.create({
         flex: 5,
         backgroundColor: 'white',
         padding: 20,
+        paddingBottom: 40,
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,
         elevation: 1,
@@ -179,6 +185,7 @@ const styles = StyleSheet.create({
     },
     signup: {
         padding: 10,
+        paddingBottom: 0,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
@@ -186,19 +193,30 @@ const styles = StyleSheet.create({
     signupNow: {
         fontSize: 14,
         fontWeight: 'bold',
-        color: '#1394f0',
+        color: Constant.color.blue,
         textDecorationLine: 'underline',
         paddingHorizontal: 10
     },
     button: {
-        backgroundColor: '#5cfff2',
+        backgroundColor: Constant.color.blue,
         padding: 10,
-        borderRadius: 20
+        borderRadius: 23
     },
     textButton: {
-        color: 'black',
+        color: 'white',
         fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'center'
+    },
+    forgotPassword: {
+        marginTop: 10,
+        alignItems: 'center',
+        justifyContent: 'center'
+    },
+    textForgotPassword: {
+        fontSize: 14,
+        fontWeight: 'bold',
+        color: Constant.color.blue,
+        textDecorationLine: 'underline'
     }
 })
