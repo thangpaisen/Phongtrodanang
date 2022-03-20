@@ -25,7 +25,7 @@ const styles = StyleSheet.create({
         elevation: 2
     },
     headerText: {
-        fontSize: 20,
+        fontSize: 22,
         color: Constant.color.blue,
         fontWeight: 'bold'
     }

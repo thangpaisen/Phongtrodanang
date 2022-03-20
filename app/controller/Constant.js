@@ -17,7 +17,9 @@ export default Constant = {
         ViewMore: 'ViewMore',
         ChoiceDistrict: 'ChoiceDistrict',
         ChoiceWards: 'ChoiceWards',
-        Login: 'Login'
+        Login: 'Login',
+        Registration: 'Registration',
+        MessageDetail: 'MessageDetail'
     },
     color: {
         green: '#3FC44E',

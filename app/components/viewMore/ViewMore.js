@@ -1,8 +1,8 @@
 import { StyleSheet, Text, View, FlatList, TouchableOpacity } from 'react-native'
 import React, { useState } from 'react'
-import Header from './Header'
 import ItemPostSearch from './../common/ItemPostSearch'
 import FormArrange from './../common/FormArrange'
+import HeaderDetail from './../common/HeaderDetail'
 
 const ViewMore = ({ route }) => {
     const { type, title } = route.params
@@ -10,7 +10,7 @@ const ViewMore = ({ route }) => {
 
     return (
         <View style={styles.container}>
-            <Header title={title} />
+            <HeaderDetail title={title} />
             <FormArrange typeChoice={typeChoice} setTypeChoice={setTypeChoice} />
             <FlatList
                 showsVerticalScrollIndicator={false}

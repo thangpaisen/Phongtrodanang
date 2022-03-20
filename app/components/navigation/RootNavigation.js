@@ -10,6 +10,8 @@ import ViewMore from './../viewMore/ViewMore'
 import ChoiceDistrict from './../choiceDistrict/ChoiceDistrict'
 import ChoiceWards from './../choiceWards/ChoiceWards'
 import Login from './../authentication/Login'
+import Registration from './../authentication/Registration'
+import MessageDetail from './../message/MessageDetail'
 
 const Stack = createNativeStackNavigator()
 
@@ -34,6 +36,8 @@ const RootNavigation = () => {
                 />
                 <Stack.Screen name={Constant.screenName.ChoiceWards} component={ChoiceWards} />
                 <Stack.Screen name={Constant.screenName.Login} component={Login} />
+                <Stack.Screen name={Constant.screenName.Registration} component={Registration} />
+                <Stack.Screen name={Constant.screenName.MessageDetail} component={MessageDetail} />
             </Stack.Navigator>
         </NavigationContainer>
     )

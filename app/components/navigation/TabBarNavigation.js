@@ -13,28 +13,9 @@ const Tab = createBottomTabNavigator()
 
 const TabBarCustomButton = ({ children, onPress }) => {
     return (
-        <View
-            style={{
-                alignItems: 'center',
-                width: 66,
-                height: 66,
-                borderRadius: 33,
-                bottom: 45,
-                justifyContent: 'center',
-                alignItems: 'center',
-                backgroundColor: 'white'
-            }}
-        >
+        <View style={styles.tabBarCustomButton}>
             <TouchableOpacity
-                style={{
-                    justifyContent: 'center',
-                    alignItems: 'center',
-                    height: 56,
-                    width: 56,
-                    borderRadius: 28,
-                    position: 'absolute',
-                    backgroundColor: Constant.color.blue
-                }}
+                style={styles.btnTabBarCustomButton}
                 onPress={onPress}
                 accessibilityRole='button'
             >
@@ -50,17 +31,29 @@ const TabBarNavigation = () => {
             screenOptions={({ route }) => ({
                 headerShown: false,
                 tabBarLabel: ({ focused, color, position }) => {
+                    let label
                     let focusedColor = focused ? Constant.color.blue : '#CCCCE3'
+                    if (route.name === Constant.screenName.Home) {
+                        label = 'Trang chủ'
+                    } else if (route.name === Constant.screenName.Message) {
+                        label = 'Tin nhắn'
+                    } else if (route.name === Constant.screenName.CreatPost) {
+                        label = Constant.icons.tabBarPost
+                    } else if (route.name === Constant.screenName.Search) {
+                        label = ' Tìm kiếm'
+                    } else if (route.name === Constant.screenName.Profile) {
+                        label = 'Hồ sơ'
+                    }
                     return (
                         <Text
                             style={{
                                 paddingTop: 10,
                                 color: focusedColor,
                                 fontSize: 14,
-                                fontFamily: Constant.fonts.poppinsMedium
+                                fontWeight: 'bold'
                             }}
                         >
-                            {route.name}
+                            {label}
                         </Text>
                     )
                 },
@@ -110,16 +103,7 @@ const TabBarNavigation = () => {
                 options={{
                     tabBarButton: (props) => <TabBarCustomButton {...props} />,
                     headerShown: false,
-                    tabBarLabel: ({ focused }) => (
-                        <Text
-                            style={{
-                                ...styles.labelStyle,
-                                color: focused ? '#00CEFF' : '#CCCCE3'
-                            }}
-                        >
-                            Post
-                        </Text>
-                    )
+                    tabBarLabel: ({ focused }) => <></>
                 }}
             />
             <Tab.Screen name={Constant.screenName.Message} component={Message} />
@@ -138,5 +122,23 @@ const styles = StyleSheet.create({
         bottom: -20,
         fontSize: 14,
         fontFamily: Constant.fonts.poppinsMedium
+    },
+    tabBarCustomButton: {
+        width: 66,
+        height: 66,
+        borderRadius: 33,
+        bottom: 45,
+        justifyContent: 'center',
+        alignItems: 'center',
+        backgroundColor: 'white'
+    },
+    btnTabBarCustomButton: {
+        justifyContent: 'center',
+        alignItems: 'center',
+        height: 56,
+        width: 56,
+        borderRadius: 28,
+        position: 'absolute',
+        backgroundColor: Constant.color.blue
     }
 })

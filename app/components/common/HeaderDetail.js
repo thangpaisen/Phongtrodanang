@@ -4,7 +4,7 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
 import Constant from './../../controller/Constant'
 
-const Header = ({ title }) => {
+const HeaderDetail = ({ title }) => {
     const navigation = useNavigation()
 
     return (
@@ -18,7 +18,7 @@ const Header = ({ title }) => {
     )
 }
 
-export default Header
+export default HeaderDetail
 
 const styles = StyleSheet.create({
     header: {

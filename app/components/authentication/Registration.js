@@ -1,20 +1,18 @@
-import React, { useState, useEffect } from 'react'
+import React, { useState } from 'react'
 import {
     StyleSheet,
     Text,
     View,
-    Image,
     TouchableOpacity,
-    Alert,
     ImageBackground,
     StatusBar,
     Pressable,
-    ToastAndroid,
-    ActivityIndicator
+    ToastAndroid
 } from 'react-native'
-
 import { Input } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/Ionicons'
+// import auth from '@react-native-firebase/auth'
+// import firestore from '@react-native-firebase/firestore'
 import Constant from './../../controller/Constant'
 
 const validateEmail = (email) => {
@@ -23,39 +21,38 @@ const validateEmail = (email) => {
     return re.test(String(email).toLowerCase())
 }
 
-const Login = ({ navigation }) => {
+const Registration = ({ navigation }) => {
     const [email, setEmail] = useState('')
-    const [password, setPassword] = useState('')
     const [errorMessageEmail, setErrorMessageEmail] = useState('')
+    const [password, setPassword] = useState('')
     const [errorMessagePassword, setErrorMessagePassword] = useState('')
+    const [name, setName] = useState('')
+    const [errorMessageName, setErrorMessageName] = useState('')
     const [secureTextEntry, setSecureTextEntry] = useState(true)
     const [loading, setLoading] = useState(false)
 
-    const handleOnPressLogin = () => {
+    function handleOnPressLogin() {
+        if (name.trim().length < 6) setErrorMessageName('Name is a required field')
         if (!validateEmail(email.trim())) setErrorMessageEmail('Email must be a valid email')
         if (password.trim()?.length < 6)
             setErrorMessagePassword('Password must be at least 6 characters')
-        if (validateEmail(email.trim()) && password.trim()?.length >= 6)
-            loginUser(email.trim(), password.trim())
+        if (validateEmail(email.trim()) && password.trim()?.length >= 6 && name.trim()?.length >= 6)
+            registerUser(name.trim(), email.trim(), password.trim())
     }
-    const loginUser = (email, password) => {
+
+    const registerUser = (name, email, password) => {
         // setLoading(true)
         // auth()
-        //     .signInWithEmailAndPassword(email, password)
+        //     .createUserWithEmailAndPassword(email, password)
         //     .then((res) => {
-        //         ToastAndroid.show('Đăng nhập thành công!', ToastAndroid.SHORT)
+        //         ToastAndroid.show('Đăng ký thành công!', ToastAndroid.SHORT)
+        //         updateProfileUser(name)
         //         setLoading(false)
         //     })
         //     .catch((error) => {
         //         switch (error.code) {
-        //             case 'auth/wrong-password':
-        //                 setErrorMessagePassword('Mật khẩu không đúng')
-        //                 break
-        //             case 'auth/user-not-found':
-        //                 setErrorMessageEmail('Tài khoản không tồn tại')
-        //                 break
-        //             case 'auth/user-disabled':
-        //                 setErrorMessageEmail('Tài khoản đã bị khoá')
+        //             case 'auth/email-already-in-use':
+        //                 setErrorMessageEmail('Tài khoản đã tồn tại')
         //                 break
         //             case 'auth/network-request-failed':
         //                 ToastAndroid.show(
@@ -68,17 +65,74 @@ const Login = ({ navigation }) => {
         //                 break
         //         }
         //         setLoading(false)
+        // })
+    }
+    const updateProfileUser = (name) => {
+        // firestore()
+        //     .collection('users')
+        //     .doc(auth().currentUser.uid)
+        //     .set({
+        //         uid: auth().currentUser.uid,
+        //         displayName: name,
+        //         description: '',
+        //         imageAvatar: 'https://image.flaticon.com/icons/png/512/149/149071.png',
+        //         imageCover: 'https://image.flaticon.com/icons/png/512/149/149071.png',
+        //         email: auth().currentUser.email,
+        //         follow: ['GyQYbaKSpPXxnCGDnyErKiYE2FC3'],
+        //         follower: [],
+        //         role: 'User',
+        //         isBlocked: false,
+        //         report: [],
+        //         createdAt: new Date().getTime()
+        //     })
+        //     .then(() => {
+        //         firestore()
+        //             .collection('users')
+        //             .doc('GyQYbaKSpPXxnCGDnyErKiYE2FC3')
+        //             .update({
+        //                 follower: firestore.FieldValue.arrayUnion(auth().currentUser.uid)
+        //             })
+        //         firestore()
+        //             .collection('users')
+        //             .doc('GyQYbaKSpPXxnCGDnyErKiYE2FC3')
+        //             .collection('notifications')
+        //             .doc(`Follower${auth().currentUser.uid}`)
+        //             .set({
+        //                 type: 'Follower',
+        //                 idUserFollow: auth().currentUser.uid,
+        //                 createdAt: new Date().getTime(),
+        //                 watched: false
+        //             })
         //     })
     }
     return (
-        <ImageBackground style={styles.loginContainer} source={Constant.icons.backgroundHotel}>
+        <ImageBackground
+            style={styles.loginContainer}
+            source={Constant.icons.backgroundHotel}
+            resizeMode='cover'
+        >
             <StatusBar backgroundColor='transparent' barStyle='light-content' translucent={true} />
-            <View style={{ flex: 3 }}></View>
+            <View style={{ flex: 2 }}></View>
             <View style={styles.main}>
                 <View style={styles.title}>
-                    <Text style={styles.footerTitle}>Đăng nhập tài khoản</Text>
+                    <Text style={styles.footerTitle}>Đăng ký tài khoản</Text>
                 </View>
                 <View style={styles.action}>
+                    <Input
+                        value={name}
+                        label='Name'
+                        labelStyle={{ fontWeight: '500', fontSize: 16 }}
+                        placeholder='Nhập tên vào....'
+                        leftIcon={<Icon name='person' size={20} color='gray' />}
+                        style={styles.input}
+                        inputContainerStyle={{ borderBottomWidth: 0.5 }}
+                        errorStyle={{ color: 'red', marginLeft: 0 }}
+                        errorMessage={errorMessageName}
+                        onChangeText={(text) => {
+                            setName(text)
+                            setErrorMessageName('')
+                        }}
+                    />
                     <Input
                         value={email}
                         label='Email'
@@ -125,28 +179,21 @@ const Login = ({ navigation }) => {
                     disabled={loading ? true : false}
                     onPress={handleOnPressLogin}
                 >
-                    <Text style={styles.textButton}>Đăng nhập</Text>
+                    <Text style={styles.textButton}>Đăng ký</Text>
                 </TouchableOpacity>
-                <View>
-                    <View style={styles.signup}>
-                        <Text style={{ fontSize: 14 }}>Bạn chưa có tài khoản?</Text>
-                        <TouchableOpacity
-                            onPress={() => navigation.navigate(Constant.screenName.Registration)}
-                        >
-                            <Text style={styles.signupNow}>Đăng ký ngay</Text>
-                        </TouchableOpacity>
-                    </View>
-                    <TouchableOpacity style={styles.forgotPassword}>
-                        <Text style={styles.textForgotPassword}>Quên mật khẩu</Text>
+                <View style={styles.signup}>
+                    <Text style={{ fontSize: 14 }}>Bạn đã có tài khoản?</Text>
+                    <TouchableOpacity
+                        onPress={() => navigation.navigate(Constant.screenName.Login)}
+                    >
+                        <Text style={styles.signupNow}>Đăng nhập ngay</Text>
                     </TouchableOpacity>
                 </View>
             </View>
         </ImageBackground>
     )
 }
-
-export default Login
-
+export default Registration
 const styles = StyleSheet.create({
     loginContainer: {
         flex: 1,
@@ -156,7 +203,6 @@ const styles = StyleSheet.create({
         flex: 5,
         backgroundColor: 'white',
         padding: 20,
-        paddingBottom: 40,
         borderTopLeftRadius: 40,
         borderTopRightRadius: 40,
         elevation: 1,
@@ -170,9 +216,10 @@ const styles = StyleSheet.create({
         fontSize: 24,
         fontWeight: 'bold'
     },
-    loginUsingMedia: {
-        flexDirection: 'row',
-        justifyContent: 'center'
+    footerTitle2: {
+        paddingVertical: 10,
+        marginLeft: 10,
+        color: 'gray'
     },
     input: {
         fontSize: 16,
@@ -181,7 +228,6 @@ const styles = StyleSheet.create({
     },
     signup: {
         padding: 10,
-        paddingBottom: 0,
         flexDirection: 'row',
         alignItems: 'center',
         justifyContent: 'center'
@@ -203,16 +249,5 @@ const styles = StyleSheet.create({
         fontSize: 16,
         fontWeight: 'bold',
         textAlign: 'center'
-    },
-    forgotPassword: {
-        marginTop: 10,
-        alignItems: 'center',
-        justifyContent: 'center'
-    },
-    textForgotPassword: {
-        fontSize: 14,
-        fontWeight: 'bold',
-        color: Constant.color.blue,
-        textDecorationLine: 'underline'
     }
 })
