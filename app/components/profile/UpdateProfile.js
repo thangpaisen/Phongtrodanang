@@ -17,7 +17,7 @@ import HeaderDetail from './../common/HeaderDetail'
 
 const ChangeProfile = () => {
     const [name, setName] = useState('Nguyễn Văn Tèo')
-    const [address, setAddress] = useState('104/21 Trần Cao Vân,')
+    const [address, setAddress] = useState('104/21 Trần Cao Vân')
     const [imgAvatar, setImgAvatar] = useState('https://images6.alphacoders.com/102/1029037.jpg')
     const actionModal = useRef()
 
