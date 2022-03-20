@@ -19,7 +19,8 @@ export default Constant = {
         ChoiceWards: 'ChoiceWards',
         Login: 'Login',
         Registration: 'Registration',
-        MessageDetail: 'MessageDetail'
+        MessageDetail: 'MessageDetail',
+        UpdateProfile: 'UpdateProfile'
     },
     color: {
         green: '#3FC44E',

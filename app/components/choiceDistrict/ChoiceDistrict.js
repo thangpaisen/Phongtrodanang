@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import Header from './Header'
 import { useNavigation } from '@react-navigation/native'
@@ -23,25 +23,27 @@ const ChoiceDistrict = () => {
     return (
         <View style={styles.container}>
             <Header title={'Chọn Quận/Huyện'} />
-            <View style={styles.body}>
-                {loading ? (
-                    <Loading />
-                ) : (
-                    listDistrict.map((item) => (
-                        <TouchableOpacity
-                            key={item?.code}
-                            style={styles.btnChoice}
-                            onPress={() =>
-                                navigation.navigate(Constant.screenName.Search, {
-                                    district: item
-                                })
-                            }
-                        >
-                            <Text style={styles.textDistrict}>{item?.name}</Text>
-                        </TouchableOpacity>
-                    ))
-                )}
-            </View>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.body}>
+                    {loading ? (
+                        <Loading />
+                    ) : (
+                        listDistrict.map((item) => (
+                            <TouchableOpacity
+                                key={item?.code}
+                                style={styles.btnChoice}
+                                onPress={() =>
+                                    navigation.navigate(Constant.screenName.Search, {
+                                        district: item
+                                    })
+                                }
+                            >
+                                <Text style={styles.textDistrict}>{item?.name}</Text>
+                            </TouchableOpacity>
+                        ))
+                    )}
+                </View>
+            </ScrollView>
         </View>
     )
 }

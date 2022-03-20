@@ -1,4 +1,4 @@
-import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, ScrollView } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import { useNavigation } from '@react-navigation/native'
 import CommonAPIs from './../../controller/APIs/CommonAPIs'
@@ -25,26 +25,28 @@ const ChoiceDistrict = ({ route }) => {
     return (
         <View style={styles.container}>
             <Header title={'Chọn Phường/Xã'} />
-            <View style={styles.body}>
-                {loading ? (
-                    <Loading />
-                ) : (
-                    listWards.map((item) => (
-                        <TouchableOpacity
-                            style={styles.btnChoice}
-                            key={item?.code}
-                            onPress={() =>
-                                navigation.navigate(Constant.screenName.Search, {
-                                    district: district,
-                                    wards: item?.name
-                                })
-                            }
-                        >
-                            <Text style={styles.textDistrict}>{item?.name}</Text>
-                        </TouchableOpacity>
-                    ))
-                )}
-            </View>
+            <ScrollView showsVerticalScrollIndicator={false}>
+                <View style={styles.body}>
+                    {loading ? (
+                        <Loading />
+                    ) : (
+                        listWards.map((item) => (
+                            <TouchableOpacity
+                                style={styles.btnChoice}
+                                key={item?.code}
+                                onPress={() =>
+                                    navigation.navigate(Constant.screenName.Search, {
+                                        district: district,
+                                        wards: item?.name
+                                    })
+                                }
+                            >
+                                <Text style={styles.textDistrict}>{item?.name}</Text>
+                            </TouchableOpacity>
+                        ))
+                    )}
+                </View>
+            </ScrollView>
         </View>
     )
 }

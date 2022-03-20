@@ -1,23 +1,17 @@
 import React, { useContext } from 'react'
-import { StyleSheet, Text, View, TouchableOpacity, FlatList } from 'react-native'
+import { StyleSheet, Text, View, TouchableOpacity, FlatList, TextInput } from 'react-native'
 import { Avatar } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/Ionicons'
 import { useNavigation } from '@react-navigation/native'
 import Constant from './../../controller/Constant'
 import Button from './../common/Button'
-
-const ItemSettings = ({ item }) => (
-    <TouchableOpacity style={styles.settingItem}>
-        <Icon style={styles.iconSetting} name={item.icon} size={24} color='black' />
-        <Text style={styles.titleItemSetting}>{item.title}</Text>
-    </TouchableOpacity>
-)
+import ItemSettings from './ItemSettings'
 
 const Profile = () => {
     const navigation = useNavigation()
     const LisData = [
         { icon: 'person-outline', title: 'Xem trang cá nhân' },
-        { icon: 'receipt-outline', title: 'Cập nhật thông tin' },
+        { icon: 'receipt-outline', title: 'Cập nhật thông tin', screenName: 'UpdateProfile' },
         { icon: 'bookmark-outline', title: 'Bài đăng đã lưu' },
         { icon: 'book-outline', title: 'Bài đăng của tôi' }
     ]
@@ -100,20 +94,6 @@ const styles = StyleSheet.create({
         borderRadius: 10,
         elevation: 5,
         backgroundColor: 'white'
-    },
-    settingItem: {
-        flexDirection: 'row',
-        paddingVertical: 16,
-        borderBottomWidth: 0.4,
-        borderBottomColor: '#d1e6e2'
-    },
-    iconSetting: {},
-    titleItemSetting: {
-        marginLeft: 10,
-        paddingHorizontal: 10,
-        fontSize: 16,
-        color: Constant.color.text,
-        fontWeight: 'bold'
     },
     btnLogout: {
         margin: 10,

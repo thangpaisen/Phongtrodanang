@@ -5,7 +5,11 @@ import RootNavigation from './app/components/navigation/RootNavigation'
 import SplashScreen from 'react-native-splash-screen'
 import { LogBox } from 'react-native'
 
-LogBox.ignoreLogs(['EventEmitter.removeListener'])
+LogBox.ignoreLogs([
+    'EventEmitter.removeListener',
+    'Animated: `useNativeDriver`',
+    'componentWillReceiveProps'
+])
 const App = () => {
     useEffect(() => {
         SplashScreen.hide()
