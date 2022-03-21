@@ -13,6 +13,7 @@ import Login from './../authentication/Login'
 import Registration from './../authentication/Registration'
 import MessageDetail from './../message/MessageDetail'
 import UpdateProfile from './../profile/UpdateProfile'
+import UpdateAddress from './../profile/UpdateAddress'
 
 const Stack = createNativeStackNavigator()
 
@@ -40,6 +41,7 @@ const RootNavigation = () => {
                 <Stack.Screen name={Constant.screenName.Registration} component={Registration} />
                 <Stack.Screen name={Constant.screenName.MessageDetail} component={MessageDetail} />
                 <Stack.Screen name={Constant.screenName.UpdateProfile} component={UpdateProfile} />
+                <Stack.Screen name={Constant.screenName.UpdateAddress} component={UpdateAddress} />
             </Stack.Navigator>
         </NavigationContainer>
     )

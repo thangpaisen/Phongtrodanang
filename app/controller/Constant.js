@@ -20,7 +20,8 @@ export default Constant = {
         Login: 'Login',
         Registration: 'Registration',
         MessageDetail: 'MessageDetail',
-        UpdateProfile: 'UpdateProfile'
+        UpdateProfile: 'UpdateProfile',
+        UpdateAddress: 'UpdateAddress'
     },
     color: {
         green: '#3FC44E',

@@ -20,7 +20,8 @@ const Search = ({ route }) => {
             Alert.alert('Thông báo', 'Vui lòng chọn Quận/Huyện')
         } else {
             navigation.navigate(Constant.screenName.ChoiceWards, {
-                district: district
+                district: district,
+                type: 'Search'
             })
         }
     }
@@ -37,7 +38,9 @@ const Search = ({ route }) => {
             <View style={styles.formChoiceAddress}>
                 <TouchableOpacity
                     style={styles.choiceDistrict}
-                    onPress={() => navigation.navigate(Constant.screenName.ChoiceDistrict)}
+                    onPress={() =>
+                        navigation.navigate(Constant.screenName.ChoiceDistrict, { type: 'Search' })
+                    }
                 >
                     <Text style={styles.choiceDistrictText} numberOfLines={1}>
                         {district?.name || 'Chọn Quận/Huyện'}
@@ -46,7 +49,7 @@ const Search = ({ route }) => {
                 </TouchableOpacity>
                 <TouchableOpacity style={styles.choiceDistrict} onPress={() => handleChoiceWards()}>
                     <Text style={styles.choiceDistrictText} numberOfLines={1}>
-                        {wards || 'Chọn Phường/Xã'}
+                        {wards?.name || 'Chọn Phường/Xã'}
                     </Text>
                     <Icon name='caret-down-outline' size={20} color={Constant.color.grayText} />
                 </TouchableOpacity>

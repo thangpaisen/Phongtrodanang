@@ -6,10 +6,13 @@ import CommonAPIs from './../../controller/APIs/CommonAPIs'
 import Constant from './../../controller/Constant'
 import Loading from './../common/Loading'
 
-const ChoiceDistrict = () => {
+const ChoiceDistrict = ({ route }) => {
     const navigation = useNavigation()
+    const type = route?.params?.type
+    console.log('District: ', type)
     const [listDistrict, setListDistrict] = useState([])
     const [loading, setLoading] = useState(true)
+
     useEffect(() => {
         CommonAPIs.getDistrict()
             .then((res) => {
@@ -20,6 +23,12 @@ const ChoiceDistrict = () => {
                 setLoading(false)
             })
     }, [])
+
+    const handleChoiceDistrict = (item) => {
+        navigation.navigate(type, {
+            district: item
+        })
+    }
     return (
         <View style={styles.container}>
             <Header title={'Chọn Quận/Huyện'} />
@@ -32,11 +41,7 @@ const ChoiceDistrict = () => {
                             <TouchableOpacity
                                 key={item?.code}
                                 style={styles.btnChoice}
-                                onPress={() =>
-                                    navigation.navigate(Constant.screenName.Search, {
-                                        district: item
-                                    })
-                                }
+                                onPress={() => handleChoiceDistrict(item)}
                             >
                                 <Text style={styles.textDistrict}>{item?.name}</Text>
                             </TouchableOpacity>

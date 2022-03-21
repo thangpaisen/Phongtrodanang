@@ -3,10 +3,10 @@ import {
     Text,
     View,
     TouchableOpacity,
-    SafeAreaView,
     ScrollView,
     Image,
-    TextInput
+    TextInput,
+    Alert
 } from 'react-native'
 import React, { useState, useRef, useEffect } from 'react'
 import Constant from '../../controller/Constant'
@@ -14,10 +14,14 @@ import Button from '../common/Button'
 import ActionSheet from 'react-native-actionsheet'
 import ImagePicker from 'react-native-image-crop-picker'
 import HeaderDetail from './../common/HeaderDetail'
+import { useNavigation } from '@react-navigation/native'
 
-const ChangeProfile = () => {
+const ChangeProfile = ({ route }) => {
+    const addressDetail = route?.params?.addressDetail
+    const district = route?.params?.district
+    const wards = route?.params?.wards
+    const navigation = useNavigation()
     const [name, setName] = useState('Nguyễn Văn Tèo')
-    const [address, setAddress] = useState('104/21 Trần Cao Vân')
     const [imgAvatar, setImgAvatar] = useState('https://images6.alphacoders.com/102/1029037.jpg')
     const actionModal = useRef()
 
@@ -54,6 +58,31 @@ const ChangeProfile = () => {
             openLibrary()
         }
     }
+
+    const handleChoiceAddress = () => {
+        navigation.navigate(Constant.screenName.UpdateAddress, {
+            addressDetail,
+            district,
+            wards
+        })
+    }
+
+    const handleOnUpdateProfile = () => {
+        if (!name) {
+            Alert.alert('Thông báo', 'Vui lòng nhập họ tên')
+        } else if (!district || !wards || !addressDetail) {
+            Alert.alert('Thông báo', 'Vui lòng chọn địa chỉ')
+        } else {
+            Alert.alert('Thông báo', 'Cập nhật thành công', [
+                {
+                    text: 'OK',
+                    onPress: () => {
+                        navigation.navigate(Constant.screenName.Profile)
+                    }
+                }
+            ])
+        }
+    }
     return (
         <>
             <View style={{ flex: 1, backgroundColor: 'white' }}>
@@ -84,14 +113,19 @@ const ChangeProfile = () => {
                             </View>
                             <View style={styles.formInput}>
                                 <Text style={styles.title}>Địa chỉ</Text>
-                                <TextInput
+                                <TouchableOpacity
+                                    onPress={handleChoiceAddress}
                                     style={styles.input}
-                                    value={address}
-                                    onChangeText={setAddress}
-                                />
+                                >
+                                    <Text style={styles.textAddress}>
+                                        {district
+                                            ? `${addressDetail}, ${wards?.name}, ${district?.name}`
+                                            : 'Chưa có địa chỉ'}
+                                    </Text>
+                                </TouchableOpacity>
                             </View>
                             <View style={styles.btnSave}>
-                                <Button title='Cập nhật' />
+                                <Button title='Cập nhật' handleOnClick={handleOnUpdateProfile} />
                             </View>
                         </View>
                     </View>
@@ -148,15 +182,21 @@ const styles = StyleSheet.create({
         marginHorizontal: 20
     },
     input: {
+        flex: 1,
+        alignItems: 'flex-start',
         marginTop: 10,
         paddingHorizontal: 20,
         paddingTop: 10,
         paddingBottom: 10,
-        fontSize: 16,
-        color: '#868686',
         borderWidth: 1,
         borderColor: '#CCCCE3',
-        borderRadius: 10
+        borderRadius: 10,
+        fontSize: 16,
+        color: '#868686'
+    },
+    textAddress: {
+        fontSize: 16,
+        color: '#868686'
     },
     btnSave: {
         marginTop: 80

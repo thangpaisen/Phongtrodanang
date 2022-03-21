@@ -8,6 +8,8 @@ import Loading from './../common/Loading'
 
 const ChoiceDistrict = ({ route }) => {
     const district = route?.params?.district
+    const type = route?.params?.type
+
     const navigation = useNavigation()
     const [listWards, setListWards] = useState([])
     const [loading, setLoading] = useState(true)
@@ -22,6 +24,13 @@ const ChoiceDistrict = ({ route }) => {
                 setLoading(false)
             })
     }, [])
+
+    const handleChoiceWards = (item) => {
+        navigation.navigate(type, {
+            district,
+            wards: item
+        })
+    }
     return (
         <View style={styles.container}>
             <Header title={'Chọn Phường/Xã'} />
@@ -34,12 +43,7 @@ const ChoiceDistrict = ({ route }) => {
                             <TouchableOpacity
                                 style={styles.btnChoice}
                                 key={item?.code}
-                                onPress={() =>
-                                    navigation.navigate(Constant.screenName.Search, {
-                                        district: district,
-                                        wards: item?.name
-                                    })
-                                }
+                                onPress={() => handleChoiceWards(item)}
                             >
                                 <Text style={styles.textDistrict}>{item?.name}</Text>
                             </TouchableOpacity>
