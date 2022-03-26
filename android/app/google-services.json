@@ -1,0 +1,39 @@
+{
+  "project_info": {
+    "project_number": "563269724807",
+    "project_id": "motelroom-cd37c",
+    "storage_bucket": "motelroom-cd37c.appspot.com"
+  },
+  "client": [
+    {
+      "client_info": {
+        "mobilesdk_app_id": "1:563269724807:android:15f5078420ee66106d2622",
+        "android_client_info": {
+          "package_name": "com.motelroom"
+        }
+      },
+      "oauth_client": [
+        {
+          "client_id": "563269724807-592jatkeg0fsq4h1gt10e06rtsgrg0e2.apps.googleusercontent.com",
+          "client_type": 3
+        }
+      ],
+      "api_key": [
+        {
+          "current_key": "AIzaSyBgPk_KftwhDpWB_azCjtRbcB3Lo4JyTgw"
+        }
+      ],
+      "services": {
+        "appinvite_service": {
+          "other_platform_oauth_client": [
+            {
+              "client_id": "563269724807-592jatkeg0fsq4h1gt10e06rtsgrg0e2.apps.googleusercontent.com",
+              "client_type": 3
+            }
+          ]
+        }
+      }
+    }
+  ],
+  "configuration_version": "1"
+}

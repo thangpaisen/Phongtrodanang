@@ -6,6 +6,7 @@ import SplashScreen from 'react-native-splash-screen'
 import { LogBox } from 'react-native'
 
 LogBox.ignoreLogs([
+    'new NativeEventEmitter',
     'EventEmitter.removeListener',
     'Animated: `useNativeDriver`',
     'componentWillReceiveProps'

@@ -16,6 +16,7 @@ import {
 import { Input } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/Ionicons'
 import Constant from './../../controller/Constant'
+import auth from '@react-native-firebase/auth'
 
 const validateEmail = (email) => {
     const re =
@@ -39,36 +40,43 @@ const Login = ({ navigation }) => {
             loginUser(email.trim(), password.trim())
     }
     const loginUser = (email, password) => {
-        // setLoading(true)
-        // auth()
-        //     .signInWithEmailAndPassword(email, password)
-        //     .then((res) => {
-        //         ToastAndroid.show('Đăng nhập thành công!', ToastAndroid.SHORT)
-        //         setLoading(false)
-        //     })
-        //     .catch((error) => {
-        //         switch (error.code) {
-        //             case 'auth/wrong-password':
-        //                 setErrorMessagePassword('Mật khẩu không đúng')
-        //                 break
-        //             case 'auth/user-not-found':
-        //                 setErrorMessageEmail('Tài khoản không tồn tại')
-        //                 break
-        //             case 'auth/user-disabled':
-        //                 setErrorMessageEmail('Tài khoản đã bị khoá')
-        //                 break
-        //             case 'auth/network-request-failed':
-        //                 ToastAndroid.show(
-        //                     'Đăng nhập thất bại! Kiểm tra kết nối Internet',
-        //                     ToastAndroid.SHORT
-        //                 )
-        //                 break
-        //             default:
-        //                 ToastAndroid.show('Lỗi', ToastAndroid.SHORT)
-        //                 break
-        //         }
-        //         setLoading(false)
-        //     })
+        setLoading(true)
+        auth()
+            .signInWithEmailAndPassword(email, password)
+            .then((res) => {
+                Alert.alert('Notification', 'Đăng nhập thành công', [
+                    {
+                        text: 'OK',
+                        onPress: () => {
+                            navigation.navigate('Home')
+                        }
+                    }
+                ])
+                setLoading(false)
+            })
+            .catch((error) => {
+                switch (error.code) {
+                    case 'auth/wrong-password':
+                        setErrorMessagePassword('Mật khẩu không đúng')
+                        break
+                    case 'auth/user-not-found':
+                        setErrorMessageEmail('Tài khoản không tồn tại')
+                        break
+                    case 'auth/user-disabled':
+                        setErrorMessageEmail('Tài khoản đã bị khoá')
+                        break
+                    case 'auth/network-request-failed':
+                        ToastAndroid.show(
+                            'Đăng nhập thất bại! Kiểm tra kết nối Internet',
+                            ToastAndroid.SHORT
+                        )
+                        break
+                    default:
+                        ToastAndroid.show('Lỗi', ToastAndroid.SHORT)
+                        break
+                }
+                setLoading(false)
+            })
     }
     return (
         <ImageBackground style={styles.loginContainer} source={Constant.icons.backgroundHotel}>
@@ -93,6 +101,7 @@ const Login = ({ navigation }) => {
                             setEmail(text)
                             setErrorMessageEmail('')
                         }}
+                        keyboardType='email-address'
                     />
                     <Input
                         value={password}
@@ -121,7 +130,10 @@ const Login = ({ navigation }) => {
                     />
                 </View>
                 <TouchableOpacity
-                    style={styles.button}
+                    style={{
+                        ...styles.button,
+                        backgroundColor: loading ? '#999' : Constant.color.blue
+                    }}
                     disabled={loading ? true : false}
                     onPress={handleOnPressLogin}
                 >
