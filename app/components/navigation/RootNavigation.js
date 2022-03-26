@@ -14,6 +14,7 @@ import Registration from './../authentication/Registration'
 import MessageDetail from './../message/MessageDetail'
 import UpdateProfile from './../profile/UpdateProfile'
 import UpdateAddress from './../profile/UpdateAddress'
+import Stripe from './../stripe/Stripe'
 
 const Stack = createNativeStackNavigator()
 
@@ -24,7 +25,7 @@ const RootNavigation = () => {
                 screenOptions={{
                     headerShown: false
                 }}
-                initialRouteName={Constant.screenName.TabBarNavigation}
+                initialRouteName={'Stripe'}
             >
                 <Stack.Screen
                     name={Constant.screenName.TabBarNavigation}
@@ -42,6 +43,7 @@ const RootNavigation = () => {
                 <Stack.Screen name={Constant.screenName.MessageDetail} component={MessageDetail} />
                 <Stack.Screen name={Constant.screenName.UpdateProfile} component={UpdateProfile} />
                 <Stack.Screen name={Constant.screenName.UpdateAddress} component={UpdateAddress} />
+                <Stack.Screen name={'Stripe'} component={Stripe} />
             </Stack.Navigator>
         </NavigationContainer>
     )
