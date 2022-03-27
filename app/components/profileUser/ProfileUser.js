@@ -33,7 +33,7 @@ const ProfileUser = () => {
                             <Text style={styles.desText}>4.5</Text>
                             <Rating
                                 type='star'
-                                startingValue={3.6}
+                                startingValue={4.5}
                                 readonly
                                 ratingColor='yellow'
                                 imageSize={16}

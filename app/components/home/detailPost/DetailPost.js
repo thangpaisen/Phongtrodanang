@@ -5,7 +5,8 @@ import {
     Image,
     Dimensions,
     TouchableOpacity,
-    ScrollView
+    ScrollView,
+    Linking
 } from 'react-native'
 import React, { useState, useEffect } from 'react'
 import Header from './Header'
@@ -13,16 +14,31 @@ import Icon from 'react-native-vector-icons/Ionicons'
 import Constant from '../../../controller/Constant'
 import ItemPostSuggest from './../../common/ItemPostSuggest'
 import InfoProfile from './InfoProfile'
+import SliderImage from './SliderImage'
+import Util from '../../../controller/Util'
+import { useNavigation } from '@react-navigation/native'
+
+const dataListImage = [
+    'https://taimienphi.vn/tmp/cf/aut/anh-gai-xinh-1.jpg',
+    'https://hinhgaixinh.com/wp-content/uploads/2021/11/tai-hinh-anh-gai-xinh-deo-mat-kinh.jpg',
+    'https://1.bigdata-vn.com/wp-content/uploads/2021/12/Hinh-Nen-Girl-Xinh-Full-HD-Cho-Laptop-Va-May.jpg'
+]
 
 const DetailPost = () => {
+    const navigation = useNavigation()
+
+    const handleOpenSMS = () => {
+        // Linking.openURL(`sms:${phone}${Util.getSMSDivider()}body=${body}`)
+        Linking.openURL(`sms:0367624332${Util.getSMSDivider()}body=Phòng trọ còn phòng ko anh`)
+    }
+    const handleOpenChat = () => {
+        navigation.navigate(Constant.screenName.MessageDetail)
+    }
     return (
         <View style={styles.container}>
             <Header />
             <ScrollView showsVerticalScrollIndicator={false}>
-                <Image
-                    source={{ uri: 'https://images6.alphacoders.com/102/1029037.jpg' }}
-                    style={styles.image}
-                />
+                <SliderImage listImage={dataListImage} />
                 <View style={styles.content}>
                     <Text style={styles.titleItem} numberOfLines={2}>
                         Phòng tiện nghi 2.1tr ngay CV Phần Mềm Quang Trung, Q12
@@ -46,14 +62,6 @@ const DetailPost = () => {
                             <Icon name='eye-outline' size={20} color={Constant.color.blue} />
                             <Text style={styles.textTimePost}>100</Text>
                         </View>
-                    </View>
-                    <View style={styles.contact}>
-                        <TouchableOpacity style={styles.btnPhoneNumber}>
-                            <Text style={styles.textBtnText}>Gọi 0367624332</Text>
-                        </TouchableOpacity>
-                        <TouchableOpacity style={styles.btnSendZalo}>
-                            <Text style={styles.textBtnTextZalo}>Nhắn Zalo</Text>
-                        </TouchableOpacity>
                     </View>
                 </View>
                 <InfoProfile />
@@ -88,6 +96,35 @@ const DetailPost = () => {
                     ))}
                 </View>
             </ScrollView>
+            <View style={styles.footer}>
+                <View style={styles.contact}>
+                    <TouchableOpacity
+                        style={{ ...styles.btnPhoneNumber, backgroundColor: Constant.color.blue }}
+                        onPress={() => {
+                            Linking.openURL(`tel:0367624332`)
+                        }}
+                    >
+                        <Icon name='call-outline' size={20} color={'white'} />
+                        <Text style={{ ...styles.textBtnText, color: 'white' }}>Gọi điện</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.btnPhoneNumber} onPress={handleOpenSMS}>
+                        <Icon
+                            name='chatbubble-ellipses-outline'
+                            size={20}
+                            color={Constant.color.blue}
+                        />
+                        <Text style={styles.textBtnText}>Gửi SMS</Text>
+                    </TouchableOpacity>
+                    <TouchableOpacity style={styles.btnPhoneNumber} onPress={handleOpenChat}>
+                        <Icon
+                            name='chatbox-ellipses-outline'
+                            size={20}
+                            color={Constant.color.blue}
+                        />
+                        <Text style={styles.textBtnText}>Chat</Text>
+                    </TouchableOpacity>
+                </View>
+            </View>
         </View>
     )
 }
@@ -100,10 +137,6 @@ const styles = StyleSheet.create({
     container: {
         flex: 1,
         backgroundColor: 'white'
-    },
-    image: {
-        width: width,
-        height: 200
     },
     content: {
         padding: 10,
@@ -137,31 +170,18 @@ const styles = StyleSheet.create({
         color: 'gray'
     },
     contact: {
-        marginTop: 10,
         flexDirection: 'row'
     },
     btnPhoneNumber: {
+        flex: 1,
         padding: 10,
         paddingVertical: 8,
-        borderRadius: 10,
-        backgroundColor: Constant.color.blue
+        backgroundColor: Constant.color.border,
+        justifyContent: 'center',
+        alignItems: 'center'
     },
     textBtnText: {
-        fontSize: 12,
-        color: '#fff',
-        fontWeight: 'bold'
-    },
-    btnSendZalo: {
-        marginLeft: 20,
-        padding: 10,
-        paddingVertical: 8,
-        borderRadius: 10,
-        backgroundColor: 'white',
-        borderWidth: 1,
-        borderColor: Constant.color.blue
-    },
-    textBtnTextZalo: {
-        fontSize: 12,
+        fontSize: 14,
         color: Constant.color.blue,
         fontWeight: 'bold'
     },
@@ -186,7 +206,7 @@ const styles = StyleSheet.create({
     contentDescription: {
         marginTop: 10,
         fontSize: 16,
-        color: '#999'
+        color: Constant.color.text
     },
     suggest: {
         paddingVertical: 10,
@@ -199,5 +219,10 @@ const styles = StyleSheet.create({
         fontSize: 18,
         color: Constant.color.blue,
         fontWeight: 'bold'
+    },
+    footer: {
+        // paddingHorizontal: 10,
+        elevation: 20,
+        backgroundColor: 'white'
     }
 })

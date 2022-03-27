@@ -11,7 +11,9 @@ const InfoProfile = () => {
                 <Avatar
                     size={64}
                     rounded
-                    source={{ uri: 'https://randomuser.me/api/portraits/women/57.jpg' }}
+                    source={{
+                        uri: 'https://gamek.mediacdn.vn/thumb_w/600/133514250583805952/2020/1/22/yasuo-15796864678051103919636.png'
+                    }}
                 />
             </View>
             <View style={styles.detail}>
@@ -66,8 +68,8 @@ const styles = StyleSheet.create({
     btnViewMore: {
         alignSelf: 'center',
         justifyContent: 'center',
-        padding: 20,
-        paddingVertical: 10,
+        padding: 12,
+        paddingVertical: 6,
         borderWidth: 1,
         borderColor: Constant.color.blue,
         borderRadius: 20
