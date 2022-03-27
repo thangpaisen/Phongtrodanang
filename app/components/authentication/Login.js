@@ -32,6 +32,7 @@ const Login = ({ navigation }) => {
     const [secureTextEntry, setSecureTextEntry] = useState(true)
     const [loading, setLoading] = useState(false)
 
+    // Hàm kiểm tra dữ liệu nhập vào khi người dùng nhấn vào nút đăng nhập
     const handleOnPressLogin = () => {
         if (!validateEmail(email.trim())) setErrorMessageEmail('Email must be a valid email')
         if (password.trim()?.length < 6)
@@ -39,6 +40,8 @@ const Login = ({ navigation }) => {
         if (validateEmail(email.trim()) && password.trim()?.length >= 6)
             loginUser(email.trim(), password.trim())
     }
+
+    // Hàm đăng nhập
     const loginUser = (email, password) => {
         setLoading(true)
         auth()
@@ -80,7 +83,7 @@ const Login = ({ navigation }) => {
     }
     return (
         <ImageBackground style={styles.loginContainer} source={Constant.icons.backgroundHotel}>
-            <StatusBar backgroundColor='transparent' barStyle='light-content' translucent={true} />
+            {/* <StatusBar backgroundColor='transparent' barStyle='light-content' translucent={true} /> */}
             <View style={{ flex: 3 }}></View>
             <View style={styles.main}>
                 <View style={styles.title}>
