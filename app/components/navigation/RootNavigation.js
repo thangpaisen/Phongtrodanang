@@ -12,8 +12,9 @@ import ChoiceWards from './../choiceWards/ChoiceWards'
 import Login from './../authentication/Login'
 import Registration from './../authentication/Registration'
 import MessageDetail from './../message/MessageDetail'
-import UpdateProfile from './../profile/UpdateProfile'
-import UpdateAddress from './../profile/UpdateAddress'
+import UpdateProfile from './../setting/UpdateProfile'
+import UpdateAddress from './../setting/UpdateAddress'
+import ProfileUser from './../profileUser/ProfileUser'
 
 const Stack = createNativeStackNavigator()
 
@@ -42,6 +43,7 @@ const RootNavigation = () => {
                 <Stack.Screen name={Constant.screenName.MessageDetail} component={MessageDetail} />
                 <Stack.Screen name={Constant.screenName.UpdateProfile} component={UpdateProfile} />
                 <Stack.Screen name={Constant.screenName.UpdateAddress} component={UpdateAddress} />
+                <Stack.Screen name={Constant.screenName.ProfileUser} component={ProfileUser} />
             </Stack.Navigator>
         </NavigationContainer>
     )

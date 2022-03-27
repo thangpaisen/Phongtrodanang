@@ -2,7 +2,7 @@ import { Image, StyleSheet, Text, TouchableOpacity, View } from 'react-native'
 import React from 'react'
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs'
 import Home from './../home/Home'
-import Profile from './../profile/Profile'
+import Setting from './../setting/Setting'
 import Search from './../search/Search'
 import Message from './../message/Message'
 import Icon from 'react-native-vector-icons/Ionicons'
@@ -41,7 +41,7 @@ const TabBarNavigation = () => {
                         label = Constant.icons.tabBarPost
                     } else if (route.name === Constant.screenName.Search) {
                         label = ' Tìm kiếm'
-                    } else if (route.name === Constant.screenName.Profile) {
+                    } else if (route.name === Constant.screenName.Setting) {
                         label = 'Hồ sơ'
                     }
                     return (
@@ -68,7 +68,7 @@ const TabBarNavigation = () => {
                         iconName = Constant.icons.tabBarPost
                     } else if (route.name === Constant.screenName.Search) {
                         iconName = Constant.icons.tabBarSearch
-                    } else if (route.name === Constant.screenName.Profile) {
+                    } else if (route.name === Constant.screenName.Setting) {
                         iconName = Constant.icons.tabBarProfile
                     }
                     return (
@@ -107,7 +107,7 @@ const TabBarNavigation = () => {
                 }}
             />
             <Tab.Screen name={Constant.screenName.Message} component={Message} />
-            <Tab.Screen name={Constant.screenName.Profile} component={Profile} />
+            <Tab.Screen name={Constant.screenName.Setting} component={Setting} />
         </Tab.Navigator>
     )
 }

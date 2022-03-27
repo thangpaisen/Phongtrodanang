@@ -7,7 +7,7 @@ import Constant from './../../controller/Constant'
 import Button from './../common/Button'
 import ItemSettings from './ItemSettings'
 
-const Profile = () => {
+const Setting = () => {
     const navigation = useNavigation()
     const LisData = [
         { icon: 'person-outline', title: 'Xem trang cá nhân' },
@@ -50,7 +50,7 @@ const Profile = () => {
         </View>
     )
 }
-export default Profile
+export default Setting
 
 const styles = StyleSheet.create({
     container: {

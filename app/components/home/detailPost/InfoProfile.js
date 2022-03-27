@@ -2,7 +2,9 @@ import { StyleSheet, Text, View, TouchableOpacity } from 'react-native'
 import React from 'react'
 import { Avatar, Rating } from 'react-native-elements'
 import Constant from './../../../controller/Constant'
+import { useNavigation } from '@react-navigation/native'
 const InfoProfile = () => {
+    const navigation = useNavigation()
     return (
         <View style={styles.infoContainer}>
             <View style={styles.avatar}>
@@ -26,7 +28,12 @@ const InfoProfile = () => {
                     }}
                 />
             </View>
-            <TouchableOpacity style={styles.btnViewMore}>
+            <TouchableOpacity
+                style={styles.btnViewMore}
+                onPress={() => {
+                    navigation.navigate(Constant.screenName.ProfileUser)
+                }}
+            >
                 <Text style={styles.textBtn}>Xem trang</Text>
             </TouchableOpacity>
         </View>
