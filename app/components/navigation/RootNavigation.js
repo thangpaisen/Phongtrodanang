@@ -15,6 +15,7 @@ import MessageDetail from './../message/MessageDetail'
 import UpdateProfile from './../setting/UpdateProfile'
 import UpdateAddress from './../setting/UpdateAddress'
 import ProfileUser from './../profileUser/ProfileUser'
+import ListReview from './../profileUser/listReview/ListReview'
 
 const Stack = createNativeStackNavigator()
 
@@ -44,6 +45,7 @@ const RootNavigation = () => {
                 <Stack.Screen name={Constant.screenName.UpdateProfile} component={UpdateProfile} />
                 <Stack.Screen name={Constant.screenName.UpdateAddress} component={UpdateAddress} />
                 <Stack.Screen name={Constant.screenName.ProfileUser} component={ProfileUser} />
+                <Stack.Screen name={Constant.screenName.ListReview} component={ListReview} />
             </Stack.Navigator>
         </NavigationContainer>
     )

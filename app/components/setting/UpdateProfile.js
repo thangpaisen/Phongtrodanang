@@ -77,7 +77,7 @@ const ChangeProfile = ({ route }) => {
                 {
                     text: 'OK',
                     onPress: () => {
-                        navigation.navigate(Constant.screenName.Profile)
+                        navigation.navigate(Constant.screenName.Setting)
                     }
                 }
             ])

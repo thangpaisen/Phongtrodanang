@@ -23,7 +23,8 @@ export default Constant = {
         UpdateProfile: 'UpdateProfile',
         UpdateAddress: 'UpdateAddress',
         Setting: 'Setting',
-        ProfileUser: 'ProfileUser'
+        ProfileUser: 'ProfileUser',
+        ListReview: 'ListReview'
     },
     color: {
         green: '#3FC44E',
@@ -31,7 +32,8 @@ export default Constant = {
         link: '#3168FF',
         grayText: '#92929D',
         separator: '#d1d1d1',
-        text: '#373737'
+        text: '#373737',
+        border: '#e6e6e6'
     },
     key: {},
     icons: {

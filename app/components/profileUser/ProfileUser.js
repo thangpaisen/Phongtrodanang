@@ -4,8 +4,11 @@ import HeaderDetail from './../common/HeaderDetail'
 import { Avatar, Rating } from 'react-native-elements'
 import Icon from 'react-native-vector-icons/Ionicons'
 import ItemPostSuggest from '../common/ItemPostSuggest'
+import Constant from './../../controller/Constant'
+import { useNavigation } from '@react-navigation/native'
 
 const ProfileUser = () => {
+    const navigation = useNavigation()
     return (
         <View style={styles.container}>
             <HeaderDetail title='Lê Anh Tuấn' />
@@ -34,10 +37,19 @@ const ProfileUser = () => {
                                 readonly
                                 ratingColor='yellow'
                                 imageSize={16}
-                                style={{}}
+                                style={{ paddingHorizontal: 4 }}
                             />
-                            <TouchableOpacity>
-                                <Text style={{ ...styles.desText, color: Constant.color.blue }}>
+                            <TouchableOpacity
+                                onPress={() => {
+                                    navigation.navigate(Constant.screenName.ListReview)
+                                }}
+                            >
+                                <Text
+                                    style={{
+                                        ...styles.desText,
+                                        color: Constant.color.blue
+                                    }}
+                                >
                                     2 Đánh giá
                                 </Text>
                             </TouchableOpacity>
@@ -133,7 +145,7 @@ const styles = StyleSheet.create({
     },
     divider: {
         height: 10,
-        backgroundColor: '#c7c7c7'
+        backgroundColor: Constant.color.border
     },
     body: {
         paddingVertical: 10
@@ -151,7 +163,7 @@ const styles = StyleSheet.create({
     contentBody: {
         marginVertical: 10,
         paddingBottom: 20,
-        borderTopWidth: 0.4,
-        borderTopColor: Constant.color.grayText
+        borderTopWidth: 1,
+        borderTopColor: Constant.color.border
     }
 })

@@ -10,8 +10,16 @@ import ItemSettings from './ItemSettings'
 const Setting = () => {
     const navigation = useNavigation()
     const LisData = [
-        { icon: 'person-outline', title: 'Xem trang cá nhân' },
-        { icon: 'receipt-outline', title: 'Cập nhật thông tin', screenName: 'UpdateProfile' },
+        {
+            icon: 'person-outline',
+            title: 'Xem trang cá nhân',
+            screenName: Constant.screenName.ProfileUser
+        },
+        {
+            icon: 'receipt-outline',
+            title: 'Cập nhật thông tin',
+            screenName: Constant.screenName.UpdateProfile
+        },
         { icon: 'bookmark-outline', title: 'Bài đăng đã lưu' },
         { icon: 'book-outline', title: 'Bài đăng của tôi' }
     ]
