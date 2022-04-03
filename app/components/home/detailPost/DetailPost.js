@@ -26,7 +26,6 @@ const dataListImage = [
 
 const DetailPost = () => {
     const navigation = useNavigation()
-
     const handleOpenSMS = () => {
         // Linking.openURL(`sms:${phone}${Util.getSMSDivider()}body=${body}`)
         Linking.openURL(`sms:0367624332${Util.getSMSDivider()}body=Phòng trọ còn phòng ko anh`)

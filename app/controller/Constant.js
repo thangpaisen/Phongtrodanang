@@ -35,7 +35,9 @@ export default Constant = {
         text: '#373737',
         border: '#e6e6e6'
     },
-    key: {},
+    keys: {
+        currentUser: 'currentUser'
+    },
     icons: {
         tabBarHome: require('../assets/images/tabBar/ic_home.png'),
         tabBarSearch: require('../assets/images/tabBar/ic_search.png'),
