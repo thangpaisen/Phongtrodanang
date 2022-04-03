@@ -11,6 +11,7 @@ import com.facebook.soloader.SoLoader;
 import java.lang.reflect.InvocationTargetException;
 import java.util.List;
 import org.devio.rn.splashscreen.SplashScreenReactPackage;
+import com.reactnativecommunity.cameraroll.CameraRollPackage;
 
 public class MainApplication extends Application implements ReactApplication {
 
